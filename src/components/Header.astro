@@ -1,0 +1,212 @@
+---
+const pathname = Astro.url.pathname;
+
+const navItems = [
+	{ href: '/about', title: 'About' },
+	{ href: '/contacts', title: 'Contacts' },
+];
+---
+
+<header class="header" data-show-nav="false">
+	<h1 class="branding">
+		<a title="Wakehurst Court Community site" href="/">
+			<img src="/images/logo.png" alt="Wakehurst Court Community site" class="logo" />
+		</a>
+	</h1>
+	<nav class="nav">
+		<ul class="nav-items">
+			{navItems.map(item => (
+				<li class="nav-item">
+					<a
+						data-is-active={pathname === item.href || pathname === item.href + '/' ? 'true' : 'false'}
+						aria-current={pathname === item.href || pathname === item.href + '/' ? 'page' : 'false'}
+						href={item.href}
+					>
+						{item.title}
+					</a>
+				</li>
+			))}
+		</ul>
+		<button class="show-nav-button" aria-label="Toggle navigation">
+			<svg viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="1em" height="1em" class="hamburger-icon">
+				<path d="M5 7.5H20" stroke="currentColor" style="vector-effect:non-scaling-stroke"></path>
+				<path d="M5 12.5H20" stroke="currentColor" style="vector-effect:non-scaling-stroke"></path>
+				<path d="M5 17.5H20" stroke="currentColor" style="vector-effect:non-scaling-stroke"></path>
+			</svg>
+		</button>
+	</nav>
+</header>
+
+<script>
+	const button = document.querySelector('.show-nav-button');
+	const header = document.querySelector('.header');
+	button?.addEventListener('click', () => {
+		const current = header?.getAttribute('data-show-nav');
+		header?.setAttribute('data-show-nav', current === 'true' ? 'false' : 'true');
+	});
+</script>
+
+<style>
+	.header {
+		color: var(--color-black);
+		display: flex;
+		margin: 0 auto;
+		max-width: var(--width-small);
+		position: relative;
+	}
+
+	.header a {
+		color: inherit;
+		text-decoration: inherit;
+	}
+
+	.branding {
+		font-size: inherit;
+		font-weight: inherit;
+		margin: 0;
+		padding: 0;
+		text-transform: uppercase;
+	}
+
+	.branding > a {
+		display: block;
+		padding: 1.5em;
+	}
+
+	@supports (padding-top: env(safe-area-inset-top)) {
+		.branding > a {
+			padding-left: calc(env(safe-area-inset-left) + 1.5rem);
+		}
+	}
+
+	.branding img {
+		color: inherit;
+		height: calc(var(--font-base-line-height) * 1.5rem);
+		vertical-align: top;
+		width: auto;
+	}
+
+	@media (max-width: 674px) {
+		.branding {
+			flex: 1;
+		}
+	}
+
+	.logo {
+		display: block;
+	}
+
+	@media (min-width: 675px) {
+		.nav {
+			flex: 1;
+		}
+	}
+
+	.nav-items {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	@media (min-width: 675px) {
+		.nav-items {
+			display: flex;
+			justify-content: flex-end;
+			padding: 0 1rem;
+		}
+	}
+
+	@supports (padding-top: env(safe-area-inset-top)) {
+		.nav-items {
+			padding-right: calc(env(safe-area-inset-right) + 1rem);
+		}
+	}
+
+	@media (max-width: 674px) {
+		.nav-items {
+			background-color: var(--color-black);
+			color: var(--color-white);
+			display: none;
+			left: 0;
+			position: absolute;
+			top: 100%;
+			width: 100%;
+			z-index: 10;
+		}
+
+		.header[data-show-nav='true'] .nav-items {
+			display: block;
+		}
+	}
+
+	.nav-item {
+		align-items: stretch;
+		display: flex;
+		line-height: calc(var(--font-base-line-height) * 1.5rem);
+		white-space: nowrap;
+	}
+
+	.nav-item > a {
+		display: block;
+		padding: 1.5rem 0.5rem;
+		position: relative;
+	}
+
+	.nav-item > a[data-is-active='true'] {
+		font-weight: 700;
+	}
+
+	@media (max-width: 674px) {
+		.nav-item > a {
+			box-sizing: border-box;
+			padding: 1rem 1.5rem;
+			text-align: right;
+			width: 100%;
+		}
+
+		.nav-item > a[data-is-active='true']::before {
+			background-color: var(--color-white);
+			bottom: 0.5rem;
+			content: '';
+			height: 1px;
+			left: 0;
+			position: absolute;
+			width: 100%;
+		}
+	}
+
+	@media (min-width: 675px) {
+		.nav-item {
+			margin-left: 0.5rem;
+		}
+	}
+
+	.show-nav-button {
+		appearance: none;
+		background: none;
+		border: none;
+		color: inherit;
+		font: inherit;
+		margin: 0;
+		outline: none;
+		padding: 1.5rem;
+		cursor: pointer;
+	}
+
+	@media (min-width: 675px) {
+		.show-nav-button {
+			display: none;
+		}
+	}
+
+	.hamburger-icon {
+		display: block;
+		font-size: calc(var(--font-base-line-height) * 1.5rem);
+	}
+
+	@media (min-width: 675px) {
+		.hamburger-icon {
+			display: none;
+		}
+	}
+</style>

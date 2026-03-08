@@ -1,30 +1,46 @@
-# Wakehurst Court
+# Astro Starter Kit: Basics
 
-_SEO friendly page builder in React.js. Heroes, sign-up forms and calls to action._
+```sh
+npm create astro@latest -- --template basics
+```
 
-Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-nextjs-landing-pages).
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-## What you have
+## 🚀 Project Structure
 
-- A dynamic frontend with [Next.js](https://nextjs.org)
-- Structured content using [Sanity.io](https://www.sanity.io)
-- Global deployment on [Netlify](https://netlify.com)
+Inside of your Astro project, you'll see the following folders and files:
 
-## Quick start
+```text
+/
+├── public/
+│   └── favicon.svg
+├── src
+│   ├── assets
+│   │   └── astro.svg
+│   ├── components
+│   │   └── Welcome.astro
+│   ├── layouts
+│   │   └── Layout.astro
+│   └── pages
+│       └── index.astro
+└── package.json
+```
 
-1. Clone this repository
-2. `npm install` in the project root folder on local
-3. `npm run dev` to start the studio and frontend locally
-   - Your studio should be running on [http://localhost:3333](http://localhost:3333)
-   - Your frontend should be running on [http://localhost:3000](http://localhost:3000)
-4. `npm run build` to build to production locally
+To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
 
-## Deploy changes
+## 🧞 Commands
 
-Netlify automatically deploys new changes commited to master on GitHub. If you want to change deployment branch, do so in [build & deploy settings on Netlify](https://www.netlify.com/docs/continuous-deployment/#branches-deploys).
+All commands are run from the root of the project, from a terminal:
 
-## Stuck? Get help
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-[![Slack Community Button](https://slack.sanity.io/badge.svg)](https://slack.sanity.io/)
+## 👀 Want to learn more?
 
-Join [Sanity’s developer community](https://slack.sanity.io) or ping us [on twitter](https://twitter.com/sanity_io).
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

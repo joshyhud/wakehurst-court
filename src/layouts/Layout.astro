@@ -1,0 +1,94 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = 'Wakehurst Court Community site', description = 'Wakehurst Court Community site' } = Astro.props;
+const pageTitle = title === 'Wakehurst Court Community site' ? title : `${title} | Wakehurst Court Community site`;
+---
+
+<!doctype html>
+<html lang="en-GB">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="initial-scale=1.0, width=device-width, viewport-fit=cover" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="robots" content="index,follow" />
+		<meta name="description" content={description} />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		<title>{pageTitle}</title>
+	</head>
+	<body>
+		<div class="container">
+			<Header />
+			<div class="content">
+				<slot />
+			</div>
+			<Footer />
+		</div>
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--wide-container: 60rem;
+		--narrow-container: 40rem;
+		--font-family-sans: -apple-system, BlinkMacSystemFont, sans-serif;
+		--color-black: #202123;
+		--color-dark-gray: #32373e;
+		--color-gray: #697a90;
+		--color-light-gray: #b4bcc7;
+		--color-very-light-gray: #e7ebed;
+		--color-white: #fff;
+		--color-accent: #156dff;
+		--unit: 16;
+		--font-micro-size: calc(10 / var(--unit) * 1rem);
+		--font-micro-line-height: 1.2;
+		--font-small-size: calc(14 / var(--unit) * 1rem);
+		--font-small-line-height: 1.5;
+		--font-base-size: 1em;
+		--font-base-line-height: calc(24 / var(--unit));
+		--font-large-size: calc(18 / var(--unit) * 1rem);
+		--font-large-line-height: 1.5;
+		--font-title3-size: calc(21 / var(--unit) * 1rem);
+		--font-title3-line-height: 1.42857;
+		--font-title2-size: calc(24 / var(--unit) * 1rem);
+		--font-title2-line-height: 1.375;
+		--font-title1-size: calc(49 / var(--unit) * 1rem);
+		--font-title1-line-height: 1.16327;
+		--width-small: 40em;
+		--width-medium: 60em;
+		--width-large: 80em;
+	}
+
+	html {
+		font-family: var(--font-family-sans);
+		font-size: var(--font-base-size);
+		line-height: var(--font-base-line-height);
+	}
+
+	body {
+		-webkit-font-smoothing: antialiased;
+		background: var(--color-white);
+		color: var(--color-black);
+		margin: 0;
+	}
+
+	body, html, .container {
+		height: 100%;
+	}
+
+	.content {
+		min-height: calc(100% - 302px);
+	}
+
+	a {
+		color: inherit;
+	}
+</style>

@@ -1,0 +1,53 @@
+---
+interface Props {
+	label?: string;
+	heading: string;
+}
+
+const { label, heading } = Astro.props;
+---
+
+<div class="text-section">
+	<section class="article">
+		{label && <div class="label">{label}</div>}
+		<h2 class="heading">{heading}</h2>
+		<slot />
+	</section>
+</div>
+
+<style>
+	.text-section {
+		padding: 2rem 0;
+	}
+
+	@media (min-width: 675px) {
+		.text-section {
+			padding: 4rem 0;
+		}
+	}
+
+	.article {
+		box-sizing: border-box;
+		margin: 0 auto;
+		max-width: var(--width-small);
+		padding: 0 1.5rem;
+		width: 100%;
+	}
+
+	.label {
+		font-size: var(--font-micro-size);
+		letter-spacing: 0.5px;
+		line-height: var(--font-micro-line-height);
+		margin-top: 1em;
+		text-transform: uppercase;
+	}
+
+	.heading {
+		font-size: var(--font-title3-size);
+		line-height: var(--font-title3-line-height);
+	}
+
+	.label + .heading {
+		margin-top: 0.25em;
+	}
+</style>

@@ -1,0 +1,96 @@
+---
+interface Props {
+	title: string;
+	tagline?: string;
+	backgroundImage: string;
+}
+
+const { title, tagline, backgroundImage } = Astro.props;
+---
+
+<div class="hero" style={`background-image: url("${backgroundImage}")`}>
+	<div class="hero-content">
+		<h1 class="hero-title">{title}</h1>
+		{tagline && (
+			<div class="hero-tagline">
+				<p>{tagline}</p>
+			</div>
+		)}
+	</div>
+</div>
+
+<style>
+	.hero {
+		align-items: flex-start;
+		display: flex;
+		justify-content: center;
+		background-color: var(--color-black);
+		background-position: 50%;
+		background-repeat: no-repeat;
+		background-size: cover;
+		color: var(--color-white);
+		padding-bottom: 2rem;
+		position: relative;
+	}
+
+	@media (min-width: 675px) {
+		.hero {
+			padding-bottom: 4rem;
+		}
+	}
+
+	.hero::before {
+		background-image: linear-gradient(rgba(34, 34, 34, 0), rgba(34, 34, 34, 0.933));
+		content: '';
+		height: 50%;
+		left: 0;
+		position: absolute;
+		top: 50%;
+		width: 100%;
+		z-index: 0;
+	}
+
+	.hero-content {
+		box-sizing: border-box;
+		max-width: var(--width-small);
+		padding: 0 1.5em;
+		width: 100%;
+		z-index: 1;
+	}
+
+	.hero-title {
+		font-size: var(--font-title2-size);
+		font-weight: 600;
+		line-height: var(--font-title2-line-height);
+		margin: 0;
+		padding: 12.5rem 0 0;
+		position: relative;
+		text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+	}
+
+	@media (min-width: 675px) {
+		.hero-title {
+			font-size: var(--font-title1-size);
+			line-height: var(--font-title1-line-height);
+			padding-top: 15rem;
+		}
+	}
+
+	.hero-tagline {
+		margin: 0.5em 0 1rem;
+		padding: 0;
+		position: relative;
+		text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+	}
+
+	@media (min-width: 675px) {
+		.hero-tagline {
+			font-size: var(--font-large-size);
+			line-height: var(--font-large-line-height);
+		}
+	}
+
+	.hero-tagline > p {
+		margin: 0;
+	}
+</style>
