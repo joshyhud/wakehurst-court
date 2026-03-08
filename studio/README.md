@@ -1,1 +1,0 @@
-# wakehurst-court-studio
