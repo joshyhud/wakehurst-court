@@ -1,0 +1,70 @@
+---
+const pathname = Astro.url.pathname;
+
+const footerItems = [
+	{ href: '/about', title: 'About' },
+	{ href: '/contacts', title: 'Contacts' },
+	{ href: '/policies', title: 'Policies' },
+];
+---
+
+<footer class="footer">
+	<nav>
+		<ul class="items">
+			{footerItems.map(item => (
+				<li class="item">
+					<a
+						data-is-active={pathname === item.href || pathname === item.href + '/' ? 'true' : 'false'}
+						aria-current={pathname === item.href || pathname === item.href + '/' ? 'page' : 'false'}
+						href={item.href}
+					>
+						{item.title}
+					</a>
+				</li>
+			))}
+		</ul>
+	</nav>
+	<div class="text">
+		<p>Made by <a href="https://josh-hudson.co.uk">Josh Hudson Dev</a> with <a href="https://www.sanity.io/">Sanity.io</a></p>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		color: var(--color-black);
+		font-size: var(--font-small-size);
+		line-height: var(--font-small-line-height);
+		padding: 2rem 0;
+	}
+
+	.items {
+		display: flex;
+		justify-content: center;
+		list-style: none;
+		margin: 0 0 3rem;
+		padding: 0;
+	}
+
+	.item > a {
+		color: inherit;
+		display: block;
+		padding: 1.5rem 0.5rem;
+		text-decoration: none;
+	}
+
+	.item > a[data-is-active='true'] {
+		font-weight: 700;
+	}
+
+	.text {
+		text-align: center;
+	}
+
+	.text p {
+		margin: 1rem 0;
+	}
+
+	.text a {
+		color: inherit;
+	}
+</style>
